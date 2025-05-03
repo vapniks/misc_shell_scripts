@@ -8,6 +8,17 @@ If the MOUNTPOINT is already in use or there are other problems, then return wit
     return 1
 fi
 
+checkcmds() {
+    local cmd
+    for cmd in $@; do
+	if ! whence $cmd >/dev/null; then
+	    print -- "Cannot find $cmd command!"
+	    return 1
+	fi
+    done
+}
+checkcmds /sbin/cryptsetup /usr/bin/sudo /usr/bin/awk /bin/grep /bin/mount /sbin/blkid /bin/mountpoint /sbin/lvscan || exit 127
+
 local bdev=${1}
 local origdev=${bdev}
 local mpoint=${2:-/media/${bdev##*/}}

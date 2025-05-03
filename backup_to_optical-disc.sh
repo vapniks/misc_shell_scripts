@@ -38,6 +38,18 @@ where:
 E.g: backup_to_optical-disc.sh -r -s -v 'TESTDVD' films=~/Video/movies ~/Music
 (this will copy ~/Videos/movies & ~/Music into /films & /Music on the CD/DVD)."
 
+checkcmds() {
+    local cmd
+    for cmd in $@; do
+	if ! whence $cmd >/dev/null; then
+	    print -- "Cannot find $cmd command!"
+	    return 1
+	fi
+    done
+}
+checkcmds wodim genisoimage mkudffs rsync dvdisaster growisofs truncate || exit 127
+
+
 # Code for parsing command line options.
 # Variables: OPTIND=index of next argument to be processed, OPTARG=set to current option argument
 # Place a colon after every option that has an argument (initial colon means silent error reporting mode)
