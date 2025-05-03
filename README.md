@@ -1,4 +1,4 @@
 # misc_shell_scripts
 Miscellaneous shell scripts
 
-  * print_booklet_from_pdf.zsh : create a booklet from a pdf file on a single sided printer
+  * print_booklet_from_pdf.zsh : create a booklet from a pdf file with a single sided printer
